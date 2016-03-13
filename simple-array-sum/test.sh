@@ -2,6 +2,13 @@
 
 set -e # fail fast
 
+if [ "$1" == "unit" ]; then
+    echo "running unit tests..."
+    rustc --test src/main.rs && ./main
+    exit 0
+fi
+
+
 function compare {
     diff <(sed -e '$a\' "$1") <(sed -e '$a\' "$2") \
         && echo "$2: OK" || echo "$2: NOT OK"
