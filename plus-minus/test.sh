@@ -22,12 +22,17 @@ for INPUT_FILE in tmp/input/input*.txt; do
     echo "Testing with $INPUT_FILE"
     rm -f result.txt # ignore error if file is missing
 
-    # 2) run with input from the file
-    ./main < "$INPUT_FILE" > result.txt
+    if [ "$1" == "debug" ]; then
+        ./main < "$INPUT_FILE"
+    else
+        # 2) run with input from the file
+        ./main < "$INPUT_FILE" > result.txt
 
-    name=${INPUT_FILE##*/} # input00.txt
-    id=${name#input} # 00.txt
+        name=${INPUT_FILE##*/} # input00.txt
+        id=${name#input} # 00.txt
 
-    # 3) compare outputs
-    compare result.txt "tmp/output/output$id"
+        # 3) compare outputs
+        compare result.txt "tmp/output/output$id"
+    fi
+
 done
