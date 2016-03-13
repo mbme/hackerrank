@@ -20,7 +20,11 @@ mkdir -v "$CONTEST_NAME"
 mkdir -v "$CONTEST_NAME/src"
 mkdir -v "$CONTEST_NAME/tmp"
 
-# download archiwe with test cases
+# download problem statement
+STATEMENT_URL="https://www.hackerrank.com/rest/contests/master/challenges/$CONTEST_NAME/download_pdf?language=English"
+wget "$STATEMENT_URL" -O "$TMP_DIR/statement.pdf"
+
+# download archive with test cases
 CONTEST_TEST_CASE_URL="https://www.hackerrank.com/rest/contests/master/challenges/$CONTEST_NAME/download_testcases"
 TMP_ZIP="$TMP_DIR/tmp.zip"
 wget "$CONTEST_TEST_CASE_URL" -O "$TMP_ZIP"
@@ -28,7 +32,6 @@ wget "$CONTEST_TEST_CASE_URL" -O "$TMP_ZIP"
 unzip "$TMP_ZIP" -d "$TMP_DIR"
 # and remove archive
 rm "$TMP_ZIP"
-
 
 # copy required files
 cp "_tmp/main.rs" "$SRC_DIR"
