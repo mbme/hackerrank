@@ -10,9 +10,17 @@ function compare {
 # 1) compile solution
 rustc src/main.rs
 
-# 2) run with input
-rm -f result.txt # ignore error if file is missing
-./main < tmp/input/input00.txt > result.txt
+for INPUT_FILE in tmp/input/input*.txt; do
+    echo ""
+    echo "Testing with $INPUT_FILE"
+    rm -f result.txt # ignore error if file is missing
 
-# 3) compare outputs
-compare result.txt tmp/output/output00.txt
+    # 2) run with input from the file
+    ./main < "$INPUT_FILE" > result.txt
+
+    name=${INPUT_FILE##*/} # input00.txt
+    id=${name#input} # 00.txt
+
+    # 3) compare outputs
+    compare result.txt "tmp/output/output$id"
+done

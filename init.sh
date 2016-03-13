@@ -2,7 +2,7 @@
 set -e # fail on error
 
 if [ $# -eq 0 ]; then
-    echo "No arguments provided"
+    echo "contest url must be provided"
     exit 1
 fi
 
