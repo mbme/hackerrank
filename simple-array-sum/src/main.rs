@@ -17,11 +17,10 @@ fn must_parse_arr<T> (s: String) -> Vec<T> where T: std::str::FromStr {
 }
 
 fn main() {
-    let num_str_1 = readline();
-    let num_str_2 = readline();
+    let size : i32 = must_parse(readline());
+    let items: Vec<i32> = must_parse_arr(readline());
 
-    let num_1 : i32 = must_parse(num_str_1);
-    let num_2 : i32 = must_parse(num_str_2);
+    assert_eq!(size, items.len() as i32);
 
-    println!("{}", num_1 + num_2);
+    println!("{}", items.iter().fold(0, |acc, &x| acc + x));
 }
