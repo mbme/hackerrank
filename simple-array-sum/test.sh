@@ -2,6 +2,8 @@
 
 set -e # fail fast
 
+export RUST_BACKTRACE=1 # show backtraces
+
 if [ "$1" == "unit" ]; then
     echo "running unit tests..."
     rustc --test src/main.rs && ./main

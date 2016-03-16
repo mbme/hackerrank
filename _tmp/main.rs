@@ -8,6 +8,10 @@ fn readline () -> String {
     input_str
 }
 
+fn read_digits_matrix (n: usize) -> Vec<Vec<char>> {
+    (0..n).map(|_| readline().trim().chars().collect::<Vec<char>>()).collect()
+}
+
 fn must_parse<T> (num_str: String) -> T where T: std::str::FromStr {
     num_str.trim().parse().ok().expect("parse error")
 }
