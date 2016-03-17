@@ -6,7 +6,7 @@ export RUST_BACKTRACE=1 # show backtraces
 
 if [ "$1" == "unit" ]; then
     echo "running unit tests..."
-    rustc --test src/main.rs && ./main
+    rustc --test src/main.rs && ./main --nocapture
     exit 0
 fi
 
