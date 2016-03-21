@@ -5,7 +5,8 @@ fn readline () -> String {
 
     io::stdin().read_line(&mut input_str).ok().expect("read error");
 
-    input_str
+    let newlines: &[_] = &['\n', '\r'];
+    input_str.trim_right_matches(newlines).to_string()
 }
 
 fn read_digits_matrix (n: usize) -> Vec<Vec<char>> {
